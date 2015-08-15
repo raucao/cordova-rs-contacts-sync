@@ -1,13 +1,19 @@
+/* global cordova */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
   actions: {
-    back: function() {
+    back() {
       history.back();
     },
 
-    openLink: function(url) {
+    openLink(url) {
       window.open(url, '_system');
+    },
+
+    openInAppBrowser(url) {
+      let ref = cordova.InAppBrowser.open(url);
+      console.log(ref);
     }
   }
 });
