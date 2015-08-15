@@ -40,6 +40,10 @@
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		743EEF3260F74DDCA1762889 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BAA9253FCE4B4F9269C50C /* CDVInAppBrowser.m */; };
+		0F248A07D801464EBEBED438 /* CDVContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E1232216A649C596BADC64 /* CDVContacts.m */; };
+		6189CE15FBE248A4AA94802C /* CDVContact.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3B304DCE684474A9C6763A /* CDVContact.m */; };
+		2F624375B7EE4A888E9D8F5F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCB615B440A4F2AB97D8FD4 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EB62D21403FD40C2A6667E96 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511527BB13974A27AE64F48A /* AddressBookUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,12 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "RS Sync/config.xml"; sourceTree = "<group>"; };
 		A1BAA9253FCE4B4F9269C50C /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		548508E1381F4C37AB33D73D /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		70E1232216A649C596BADC64 /* CDVContacts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVContacts.m"; path = "cordova-plugin-contacts/CDVContacts.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		DD3B304DCE684474A9C6763A /* CDVContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVContact.m"; path = "cordova-plugin-contacts/CDVContact.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		1CA0A618DA3F4F3EA47ACC99 /* CDVContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVContacts.h"; path = "cordova-plugin-contacts/CDVContacts.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		96894731198043CB8FE26952 /* CDVContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVContact.h"; path = "cordova-plugin-contacts/CDVContact.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		ADCB615B440A4F2AB97D8FD4 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		511527BB13974A27AE64F48A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AddressBookUI.framework"; path = "System/Library/Frameworks/AddressBookUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,8 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
+				2F624375B7EE4A888E9D8F5F /* AddressBook.framework in Frameworks */,
+				EB62D21403FD40C2A6667E96 /* AddressBookUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +202,8 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				ADCB615B440A4F2AB97D8FD4 /* AddressBook.framework */,
+				511527BB13974A27AE64F48A /* AddressBookUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +221,10 @@
 			children = (
 				A1BAA9253FCE4B4F9269C50C /* CDVInAppBrowser.m */,
 				548508E1381F4C37AB33D73D /* CDVInAppBrowser.h */,
+				70E1232216A649C596BADC64 /* CDVContacts.m */,
+				DD3B304DCE684474A9C6763A /* CDVContact.m */,
+				1CA0A618DA3F4F3EA47ACC99 /* CDVContacts.h */,
+				96894731198043CB8FE26952 /* CDVContact.h */,
 			);
 			name = Plugins;
 			path = "RS Sync/Plugins";
@@ -392,6 +410,8 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				743EEF3260F74DDCA1762889 /* CDVInAppBrowser.m in Sources */,
+				0F248A07D801464EBEBED438 /* CDVContacts.m in Sources */,
+				6189CE15FBE248A4AA94802C /* CDVContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

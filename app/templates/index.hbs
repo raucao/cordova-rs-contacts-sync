@@ -1,0 +1,7 @@
+<div>
+  <button {{action "listContacts"}}>List contacts</button>
+
+  {{#each model.contacts as |contact|}}
+  <br>{{contact.displayName}}
+  {{/each}}
+</div>
