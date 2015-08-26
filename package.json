@@ -1,6 +1,6 @@
 {
   "name": "cordova-rs-sync",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Small description for cordova-rs-sync goes here",
   "private": true,
   "directories": {
@@ -10,8 +10,7 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "ember test",
-    "postinstall": "bower install"
+    "test": "ember test"
   },
   "repository": "",
   "engines": {
