@@ -3616,11 +3616,10 @@ module.exports = ret;
       }
 
       if (global.cordova) {
-        if (RemoteStorage.config.cordovaRedirectUri) {
+        if (typeof RemoteStorage.config.cordovaRedirectUri !== 'string') {
           this._emit('error', new RemoteStorage.DiscoveryError("Please supply a custom HTTPS redirect URI for your Cordova app"));
           return;
         }
-
         if (!global.cordova.InAppBrowser) {
           this._emit('error', new RemoteStorage.DiscoveryError("Please include the InAppBrowser Cordova plugin to enable OAuth"));
           return;

@@ -4,7 +4,7 @@ export function initialize(/* container, application */) {
 
   remoteStorage.access.claim('contacts', 'rw');
   remoteStorage.caching.disable('/');
-  remoteStorage.cordovaRedirectUri = 'https://rs-sync.5apps.com';
+  remoteStorage.setCordovaRedirectUri('https://rs-sync.5apps.com');
 
   remoteStorage.on('connected', function() {
     // alert('Storage connected. Yay!');
