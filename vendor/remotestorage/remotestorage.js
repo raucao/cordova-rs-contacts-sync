@@ -3378,7 +3378,8 @@ module.exports = ret;
    *
    *  (start code)
    *  var remoteStorage = new RemoteStorage({
-   *    logging: true  // defaults to false
+   *    logging: true,  // defaults to false
+   *    cordovaRedirectUri: 'https://app.mygreatapp.com' // defaults to undefined
    *  });
    *  (end code)
    */
@@ -3440,6 +3441,7 @@ module.exports = ret;
     // Initial configuration property settings.
     if (typeof cfg === 'object') {
       RemoteStorage.config.logging = !!cfg.logging;
+      RemoteStorage.config.cordovaRedirectUri = cfg.cordovaRedirectUri;
     }
 
     RemoteStorage.eventHandling(
@@ -3530,7 +3532,8 @@ module.exports = ret;
       remote:   true,
       conflict: true
     },
-    discoveryTimeout: 10000
+    discoveryTimeout: 10000,
+    cordovaRedirectUri: undefined
   };
 
   RemoteStorage.prototype = {
@@ -3585,7 +3588,6 @@ module.exports = ret;
      * Parameters:
      *   userAddress        - The user address (user@host) to connect to.
      *   token              - (optional) A bearer token acquired beforehand
-     *   cordovaRedirectUri - (optional) An HTTPS redirect URI for Cordova apps
      *
      * Discovers the WebFinger profile of the given user address and initiates
      * the OAuth dance.
@@ -3605,13 +3607,6 @@ module.exports = ret;
      *    established authorization among themselves, which will omit bearer
      *    tokens in all requests later on. This is useful for example when using
      *    Kerberos and similar protocols.
-     *
-     * 3. If using remoteStorage in a Cordova app, you must supply a custom
-     *    HTTPS redirect URI. This is necessary because Cordova serves on
-     *    file:// addresses that cannot be used for redirection due to browser
-     *    security policies. This redirect URI will also be used to uniquely
-     *    identify your app.
-     *
      */
     connect: function (userAddress, token) {
       this.setBackend('remotestorage');
@@ -3621,7 +3616,7 @@ module.exports = ret;
       }
 
       if (global.cordova) {
-        if (!this.cordovaRedirectUri) {
+        if (RemoteStorage.config.cordovaRedirectUri) {
           this._emit('error', new RemoteStorage.DiscoveryError("Please supply a custom HTTPS redirect URI for your Cordova app"));
           return;
         }
@@ -3652,7 +3647,7 @@ module.exports = ret;
           if (info.authURL) {
             if (typeof token === 'undefined') {
               // Normal authorization step; the default way to connect
-              this.authorize(info.authURL, this.cordovaRedirectUri);
+              this.authorize(info.authURL, RemoteStorage.config.cordovaRedirectUri);
             } else if (typeof token === 'string') {
               // Token supplied directly by app/developer/user
               RemoteStorage.log('Skipping authorization sequence and connecting with known token');
@@ -3803,6 +3798,22 @@ module.exports = ret;
       if (this.localStorageAvailable()) {
         localStorage['remotestorage:api-keys'] = JSON.stringify(this.apiKeys);
       }
+    },
+
+    /**
+     * Method: setCordovaRedirectUri
+     *
+     * Set redirect URI to be used for the OAuth redirect within the
+     * in-app-browser window in Cordova apps.
+     *
+     * Parameters:
+     *   uri - string, valid HTTP(S) URI
+     */
+    setCordovaRedirectUri: function (uri) {
+      if (typeof uri !== 'string' || !uri.match(/http(s)?\:\/\//)) {
+        throw new Error("Cordova redirect URI must be a URI string");
+      }
+      RemoteStorage.config.cordovaRedirectUri = uri;
     },
 
     /**
