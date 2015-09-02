@@ -4798,7 +4798,7 @@ module.exports = ret;
     } else {
       reader.onloadend = function() {
         callback(reader.result); // reader.result contains the contents of blob as a typed array
-      }
+      };
     }
     reader.readAsArrayBuffer(blob);
   }
@@ -4827,7 +4827,7 @@ module.exports = ret;
       } else {
         fileReader.onloadend = function(evt) {
           pending.resolve(evt.target.result);
-        }
+        };
       }
       fileReader.readAsText(blob, encoding);
     }
@@ -4870,11 +4870,12 @@ module.exports = ret;
 
     /**
      * Event: change
-     *   never fired for some reason
+     *   Never fired for some reason
+     *   # TODO uhm, just found this comment...
      *
      * Event: connected
-     *   fired when the wireclient connect method realizes that it is
-     *   in posession of a token and a href
+     *   Fired when the wireclient connect method realizes that it is in
+     *   possession of a token and href
      **/
     RS.eventHandling(this, 'change', 'connected', 'wire-busy', 'wire-done', 'not-connected');
 
@@ -5693,17 +5694,21 @@ if (typeof XMLHttpRequest === 'undefined') {
           redirectUri,
           'location=yes,clearsessioncache=yes,clearcache=yes'
         )
-        .then(function (authResult) {
+        .then(function(authResult) {
           remoteStorage.remote.configure({
             token: authResult.access_token
           });
 
-          // sync doesnt start until after reload
+          // TODO
+          // sync doesn't start until after reload
           // possibly missing some initialization step?
           global.location.reload();
         })
-        .then(null, function (error) {
+        .then(null, function(error) {
           console.error(error);
+          alert('rs connected: '+remoteStorage.connected);
+          remoteStorage.widget.view.setState('initial');
+          // remoteStorage._emit('not-connected');
         });
     }
 
@@ -5750,7 +5755,7 @@ if (typeof XMLHttpRequest === 'undefined') {
   };
 
   /**
-   * Open new InAppBrowser window for Oauth on cordova
+   * Open new InAppBrowser window for OAuth in Cordova
    */
   RemoteStorage.Authorize.openWindow = function (url, redirectUri, options) {
     var pending = Promise.defer();
